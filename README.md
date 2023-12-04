@@ -1,6 +1,5 @@
 # Hurricane In Rust
 
-
 ## 1.0 Project Structure
 
 ```
@@ -30,9 +29,7 @@ hurricane-in-rust
 
 ```
 
-
 ## 2.0 Programming Style
-
 
 ### 2.1 Guideline
 
@@ -40,14 +37,11 @@ hurricane-in-rust
 https://doc.rust-lang.org/1.9.0/style/
 ```
 
-
 ### 2.2 Special Notes
 
 1. Syntax ```extern crate x;``` is no longer required when using external crates.
 
-
 ## 3.0 Commands
-
 
 ### 3.1 Utility
 
@@ -69,7 +63,6 @@ cargo rustdoc -- --document-private-items
 # Then, the doc is under your target folder with html format
 ```
 
-
 ### 3.3 Cargo Bench
 Rust has internal benchmark facility support, but it is an unstable feature, and can only be
 run under the Nightly Rust.
@@ -89,9 +82,7 @@ To Run Benchmark
 
 ## 4.0 Notes
 
-
 ## 5.0 Design Specifications
-
 
 ### 5.1 Actor System Design
 
@@ -102,7 +93,6 @@ Use Actix (https://github.com/actix/actix) as the actor system for the project.
 - https://simplabs.com/blog/2018/06/11/actix.html
 
 - https://simplabs.com/blog/2018/06/27/actix-tcp-client.html
-
 
 #### 5.1.1 Notes
 
@@ -125,20 +115,19 @@ To implement each actor, we need to complete 3 parts:
 
 See the Experiments/chatter as an example
 
-
 #### 5.1.2 Actor Summary
 
 List and summarize all the actors in the Rust implementation:  
 - **Lifetime**: When will an actor be terminated? naturally, or unnaturally (TODO: respawn using supervisor).
-- **Note 1**: Actors are more or less on the same level of hierarchy. By passing message, they are passing the "control flow" to the other. 
+- **Note 1**: Actors are more or less on the same level of hierarchy. By passing message, they are passing the "control flow" to the other.
 - **Note 2**: Relationship of Actors are more like a graph (interconnected) instead of a tree (hierarchical), though some are more "social".
 - **Note 3**: Messages between TCP layer Actors are different than messages between local Actors.
 
 | Name                  | Purpose                                                                     | Lifetime                    |
 |-----------------------|-----------------------------------------------------------------------------|-----------------------------|
-| HurricaneFrontend     | Computation side hosting data computation flow services. Driver.            | Application                 |
+| HurricaneFrontend     | Computation side hosting data computation flow services. Driver.             | Application                 |
 | AppMasterCore         | App Master actual logic                                                     | Node                        |
-| AppMaster             | App Master TCP layer                                                        | TCP connection              | 
+| AppMaster             | App Master TCP layer                                                        | TCP connection              |
 | TaskManagerCore       | Task Manager actual logic                                                   | Node                        |
 | TaskManager           | Task Manager TCP layer with App Master                                      | TCP connection              |
 | HurricaneWorkIO       | Hurricane Work TCP layer with Backend (Worker <=> IO)                       | TCP connection              |
@@ -147,7 +136,6 @@ List and summarize all the actors in the Rust implementation:
 |                       |                                                                                                           |
 | HurricaneBackend      | IO side hosting data bag storage services. Driver.                          | Application                 |
 | HurricaneIO           | Hurricane Server that performs the actual disk IO.                          | TBD                         |
-
 
 #### 5.1.3 Actor Spawning on Frontend
 
