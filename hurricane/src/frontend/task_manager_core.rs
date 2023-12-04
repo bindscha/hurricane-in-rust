@@ -40,8 +40,8 @@ impl SystemMonitor {
         let num_processors = system.get_processor_list().len() - 1;
 
         SystemMonitor {
-            pid: pid,
-            system: system,
+            pid,
+            system,
             num_processors,
         }
     }

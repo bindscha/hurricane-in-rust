@@ -58,7 +58,7 @@ mod tests {
 
         let mut bv = BitVec::from_elem(num_bytes * 8, true);
         bv.set(15, false);
-        assert_eq!(Some(()), pu.put(bv.clone()));;
+        assert_eq!(Some(()), pu.put(bv.clone()));
         assert_eq!(None, pu.put(bv.clone()));
 
         let buf = pu.into_inner();
@@ -79,7 +79,7 @@ mod tests {
 
         let mut bv = BitVec::from_elem(num_bytes * 8 + 1, true);
         bv.set(15, false);
-        assert_eq!(Some(()), pu.put(bv.clone()));;
+        assert_eq!(Some(()), pu.put(bv.clone()));
     }
 
     #[test]
@@ -91,7 +91,7 @@ mod tests {
 
         let bv = BitVec::from_elem(num_bytes * 8, false);
         let bv: BitVec = bv.into_iter().map(|_| rand::random()).collect();
-        assert_eq!(Some(()), pu.put(bv.clone()));;
+        assert_eq!(Some(()), pu.put(bv.clone()));
         assert_eq!(None, pu.put(bv.clone()));
 
         let buf = pu.into_inner();
